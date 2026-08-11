@@ -1,0 +1,49 @@
+Quick Reference
+
+All Terminal Commands
+
+# Initial setup
+
+mkdir TaskManager && cd TaskManager
+go mod init TaskManager
+
+go get github.com/gin-gonic/gin
+
+# Milestone 2 dependencies
+go get gorm.io/gorm gorm.io/driver/postgres github.com/joho/godotenv
+
+# Milestone 3 dependencies
+go get golang.org/x/crypto/berypt github.com/golang-jwt/jwt/V5
+
+# Run the server
+go run main.go
+
+# Run with hot reload (after air install)
+air
+
+# Tidy dependencies
+go mod tidy
+
+# Build a binary
+go build -o TaskManager .
+
+Code to Use It
+
+200 OK Successful GET or PUT/PATCH — return the resource
+
+201 Created Successful POST that created a new resource
+
+204 No Content Successful DELETE — nothing to return
+
+400 Bad Request Client sent malformed JSON or failed validation
+
+401 Unauthorized Missing or invalid authentication token
+
+403 Forbidden Token is valid but user does not own this resource
+
+404 Not Found The requested resource does not exist
+
+422 Unprocessable Entity Request is valid JSON but the values are semantically wrong
+500 Internal Server Error Something went wrong on the server — log it and investigate
+
+TaskManager — Building a REST API with Gin + Page 22 of 23

@@ -1,0 +1,40 @@
+Create config/config.go:
+
+config/config.go
+package config
+
+import (
+“fmt"
+
+os"
+
+type Config struct {
+DBHost _ string
+DBuser - string
+DBPassword string
+DBName _ string
+DBPort _ string
+Port string
+
+func Load() Config {
+return Configf
+
+DBHost: getEnv("DB_HOST",
+DBUser: getEnv("DB_USER’, "postgres"),
+DBPassword: getEnv("DB_PASSWORD", ""),
+DBName: getEnv("DB_NAME", "TaskManager"),
+DBPort: getEnv("DB_PORT", "5432"),
+Port:  getEnv("PORT", "8080"),
+
+func (c Config) DSNO string {
+return fmt.Sprintf(
+“host=%s user=%s password=%s dbname=%s port=%s ssimode=disable",
+c.DBHost, c.DBUser, c.DBPassword, c.DBName, c.DBPort,
+
+func getEnv(key, fallback string) string {
+if v= os.Getenv(key); v I=" {
+return v
+}
+return fallback
+
+TaskManager — Building a REST API with Gin + Page 11 of 23

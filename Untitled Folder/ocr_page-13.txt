@@ -1,0 +1,51 @@
+Description string ‘json:"description™”
+Status Status ‘json:"status" gorm:"default:pending""
+
+type CreateTaskinput struct {
+Title string json:'title"___binding:"required"”
+
+Description string ‘json:"description™
+
+type UpdateTaskinput struct {
+Title string ‘json:"title"
+Description string \json:"description"””
+Status Status json:"status"*
+
+2.5 Rewriting Handlers to Use the Database
+
+Replace the content of handlers/task_handler.go with database-backed handlers:
+
+handlers/task_handler.go — database version
+package handlers
+
+import (
+“net/http"
+
+“github.com/gin-gonic/gin"
+“TaskManager/db"
+“TaskManager/models"
+
+func GetTasks(c *gin.Context) {
+var tasks []models.Task
+
+// Filter by status if query param is provided
+
+query := db.DB.Model(&models.TaskQ)
+
+if status := c.Query("status"); status != "" {
+query = query.Where("status = ?", status)
+
+if err := query.Find(&tasks).Error; err != nil {
+c.JSON(http.StatusinternalServerError, gin.H{“error": err.Error()})
+return
+
+}
+
+c.JSON(http.StatusOK, gin.H{"data": tasks})
+
+func CreateTask(c *gin.Context) {
+var input models.CreateTaskinput
+if err := c.ShouldBindJSON(&input); err != nil {
+c. JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+return
+

@@ -1,0 +1,43 @@
+Production-Ready
+JWT Auth « Middleware « User Ownership « Hot Reload
+
+By the end of this Milestone TaskManager will have user accounts, JWT authentication,
+and protected routes. Only the owner of a task can read or modify it.
+
+Create models/user.go:
+
+models/user.go
+package models
+
+import "gorm.io/gorm"
+
+type User struct {
+gorm.Model
+Name string ‘json:"name" — gorm:"not null"
+Email string ‘json:"email" gorm:"uniquelndex;not null"*
+Password string ‘json: // never send password in JSON responses
+
+type Registerinput struct {
+Name _ string json:"name" _ binding:"required"*
+Email string ‘json:"email" _binding:"required,email"
+
+Password string \json:"password" binding:"required,min:
+
+type LoginInput struct {
+Email string ‘json:"email" binding:"required,email"”
+Password string ‘jso! assword" binding:"required"”
+
+Update the Task model to track which user owns each task:
+
+models/task.go — addition
+// Add to models/task.go inside the Task struct:
+UserID uint ‘json:"user_id" gorm:"not null"”
+
+Add both models to AutoMigrate in do/db.go:
+
+Terminal
+go get golang.org/x
+
+rypto/bcrypt
+
+TaskManager — Building a REST API with Gin + Page 16 of 23

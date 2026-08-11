@@ -1,0 +1,62 @@
+Milestone
+
+Persistence
+2 PostgreSQL « GORM « Migrations « Real Database CRUD
+
+By the end of this Milestone, TaskManager will store tasks in a real PostgreSQL database
+using GORM. All your Milestone 1 routes will continue to work — only the storage layer
+changes.
+
+Windows Linux (Ubuntu / Debian)
+Download the installer from sudo apt install postgresql postgresq|-
+https://www.postgresql.org/download/windows/ ontrib
+
+. id temctl start post I
+During setup, set a password for the postgres eve ee eee
+
+user — write it down.
+After install, open pgAdmin or psql from the Start
+Menu.
+
+Then switch to the postgres user: sudo
+-i-u postgres
+
+Create the database and a user for TaskManager:
+
+psal
+
+-- Run inside psql
+
+CREATE DATABASE TaskManager;
+
+CREATE USER TaskManager_user WITH PASSWORD 'yourpassword';
+
+GRANT ALL PRIVILEGES ON DATABASE TaskManager TO TaskManager_user;
+
+\q
+
+Terminal
+
+go get gorm.io/gorm
+
+go get gorm.io/driver/postgres
+
+go get github.com/joho/godotenv # for reading .env files
+
+Create a .env file in your project root (never commit this to Git):
+
+DB_HOST=localhost
+DB_USEI askManager_user
+
+DB_PASSWORD=yourpassword
+DB_NAME=TaskManager
+DB_PORT=5432
+
+PORT=8080
+
+WARNING
+
+Add .env to your .gitignore file immediately. Never commit database passwords to version
+control.
+
+TaskManager — Building a REST API with Gin + Page 10 of 23

@@ -1,0 +1,22 @@
+Project Structure
+TaskManager/
+main.go
+go.mod
+go.sum
+config/
+config.go // env vars & app config
+db/
+db.go // database connection
+models/
+task.go // Task struct
+user.go // User struct
+handlers/
+task_handler.go // task HTTP handlers
+auth_handler.go // register/login handlers
+middleware/
+auth.go // JNNT middleware
+logger.go // request logger
+routes/
+routes.go // all route definitions.
+
+TaskManager — Building a REST API with Gin + Page 3 of 23

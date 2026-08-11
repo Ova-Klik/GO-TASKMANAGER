@@ -1,0 +1,50 @@
+Create db/db.go:
+
+db/db.go
+package db
+
+import (
+"log"
+
+"gorm.io/driver/postgres"
+“gorm.io/gorm"
+"TaskManager/config"
+“TaskManager/models"
+
+var DB *gorm.DB
+
+func Connect(cfg config.Config) {
+var err error
+DB, err = gorm.Open(postgres.Open(cfg.DSN()), &gorm.ConfigQ)
+if err != nil
+log.Fatal("Failed to connect to database", err)
+
+// AutoMigrate creates/updates the tasks table to match the struct
+if err = DB.AutoMigrate(&models.TaskQ); err != nil {
+log.Fatal("Migration failed:", err)
+
+log.Printin(‘Database connected and migrated.")
+
+2.4 Updating the Task Model for GORM
+
+Update models/task.go to use GORM's base model:
+
+models/task.go — updated
+package models
+
+import "gorm.io/gorm*
+
+type Status string
+
+const (
+StatusPending Status = "pending"
+StatusinProgress Status = "in_progress"
+StatusDone Status = "done"
+
+// Task now embeds gorm.Model which gives us ID, CreatedAt, UpdatedAt, DeletedAt
+type Task struct {
+
+gorm.Model
+
+Title string ‘json:'title"__gorm:"not null"”
+

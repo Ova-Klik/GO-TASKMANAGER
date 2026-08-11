@@ -1,20 +1,33 @@
 package main
 
 import (
-	"TaskManager/handlers"
+	"log"
+
+	"TaskManager/config"
+	"TaskManager/db"
+	"TaskManager/middleware"
+	"TaskManager/routes"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	r := gin.Default()
-
-	api := r.Group("/api/v1")
-	{
-		api.GET("/tasks", handlers.GetTasks)
-		api.POST("/tasks", handlers.CreateTask)
-		api.GET("/tasks/:id", handlers.GetTask)
+	if err := godotenv.Load(); err != nil {
+		log.Println("Note: .env file not loaded, falling back to system environment variables")
 	}
 
-	r.Run(":8080")
+	cfg := config.Load()
+
+	db.Connect(cfg)
+
+	r := gin.Default()
+	r.Use(middleware.Logger())
+
+	routes.SetupRoutes(r)
+
+	log.Printf("Server starting on port %s...", cfg.Port)
+	if err := r.Run(":" + cfg.Port); err != nil {
+		log.Fatalf("Server failed to run: %v", err)
+	}
 }

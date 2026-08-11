@@ -1,0 +1,42 @@
+Project Overview — TaskManager
+
+Over three Milestones you will build TaskManager: a fully functional Task Manager REST API.
+Each Milestone builds directly on top of the previous one, so keep your code — nothing gets
+thrown away.
+
+What You Will Build
+
+By the end of Milestone 3 your API will support:
++ Creating, reading, updating, and deleting tasks (full CRUD)
+* Storing tasks in a real PostgreSQL database
++ User accounts with registration and login
+« JWT-based authentication — protected routes that require a valid token
+* Middleware for logging, rate limiting, and error recovery
+* Aclean, deployable project structure
+
+The Final API — All Endpoints
+
+Method Path Acti Description
+
+POST /api/v1/auth/register RegisterUser Create a new user account
+
+POST /api/v1/auth/login LoginUser Login and receive a JWT token
+GET /api/vi/tasks GetTasks List all tasks for the logged-in user
+POST /api/v1/tasks CreateTask Create a new task
+
+GET /api/v1/tasks/:id GetTask Get a single task by ID
+
+PUT /api/v1/tasks/:id UpdateTask Replace a task entirely
+
+PATCH /api/vi/tasks/:id PatchTask Update specific fields of a task
+DELETE /api/vi/tasks/:id DeleteTask Delete a task
+
+TIP
+
+You will implement these routes progressively.
+Milestone 1 does the GET/POST basics;
+Milestone 2 adds the database;
+
+Milestone 3 adds auth and the remaining routes.
+
+TaskManager — Building a REST API with Gin + Page 2 of 23

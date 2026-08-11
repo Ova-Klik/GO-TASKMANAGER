@@ -1,0 +1,14 @@
+2026-08-11 05:38:46.187 WAT [979285] LOG:  starting PostgreSQL 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit
+2026-08-11 05:38:46.188 WAT [979285] LOG:  listening on IPv4 address "127.0.0.1", port 5433
+2026-08-11 05:38:46.195 WAT [979285] FATAL:  could not create lock file "/var/run/postgresql/.s.PGSQL.5433.lock": Permission denied
+2026-08-11 05:38:46.206 WAT [979285] LOG:  database system is shut down
+2026-08-11 05:39:03.394 WAT [979342] LOG:  starting PostgreSQL 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit
+2026-08-11 05:39:03.395 WAT [979342] LOG:  listening on IPv4 address "127.0.0.1", port 5433
+2026-08-11 05:39:03.402 WAT [979342] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5433"
+2026-08-11 05:39:03.422 WAT [979346] LOG:  database system was shut down at 2026-08-11 05:38:45 WAT
+2026-08-11 05:39:03.446 WAT [979342] LOG:  database system is ready to accept connections
+2026-08-11 05:39:06.150 WAT [979368] ERROR:  role "taskmanager_user" does not exist
+2026-08-11 05:39:06.150 WAT [979368] STATEMENT:  ALTER USER TaskManager_user WITH PASSWORD 'yourpassword'; GRANT ALL PRIVILEGES ON DATABASE "TaskManager" TO TaskManager_user; ALTER DATABASE "TaskManager" OWNER TO TaskManager_user; GRANT ALL ON SCHEMA public TO TaskManager_user;
+2026-08-11 05:41:41.417 WAT [980190] ERROR:  duplicate key value violates unique constraint "idx_users_email"
+2026-08-11 05:41:41.417 WAT [980190] DETAIL:  Key (email)=(alice@example.com) already exists.
+2026-08-11 05:41:41.417 WAT [980190] STATEMENT:  INSERT INTO "users" ("created_at","updated_at","deleted_at","name","email","password") VALUES ($1,$2,$3,$4,$5,$6) RETURNING "id"

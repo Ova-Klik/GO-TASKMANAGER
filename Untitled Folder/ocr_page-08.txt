@@ -1,0 +1,43 @@
+Create routes/routes.go:
+
+routes/routes.go
+package routes
+
+import (
+“github.com/gin-gonic/gin"
+"TaskManager/handlers"
+
+func SetupRoutes(r *gin.Engine) {
+
+Group("/api/v1")
+
+tasks.GET("",  handlers.GetTasks)
+tasks.POST| handlers.CreateTask)
+
+Update main.go to use your routes module:
+
+main.go — updated
+package main
+
+import (
+"github.com/gin-gonic/gin"
+“TaskManager/routes"
+
+func main() €
+gin.Default()
+routes.SetupRoutes(r)
+r.Run(":8080")
+
+Use these curl commands to verify everything works. Run them in a second terminal while your
+server is running:
+
+Terminal — curl tests
+# Create a task
+curl -X POST http://localhost:8080/api/v1/tasks \.
+-H "Content-Type: application/json" \
+-d '{"title":"Buy groceries","description":"Milk, eggs, bread"}'
+
+# List all tasks
+curl http://localhost:8080/api/v1/tasks
+
+TaskManager — Building a REST API with Gin + Page 8 of 23

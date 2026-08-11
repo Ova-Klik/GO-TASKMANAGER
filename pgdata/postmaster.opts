@@ -1,0 +1,1 @@
+/usr/lib/postgresql/16/bin/postgres "-D" "/home/semicolon/Desktop/GO-TASKMANAGER/pgdata"

@@ -1,0 +1,27 @@
+Milestone 3 — Tasks to Complete
+
+@Wyour TASK
+Implement authentication, protect your routes, enforce ownership, then tackle these:
+
+Task 1 — Test the Full Auth Flow
+
+Use curl to: register a user, login, copy the token, and use it as a Bearer token to create and
+fetch tasks. Try accessing a task endpoint without a token — confirm you get 401.
+
+Task 2 — Add a Request Logger Middleware
+
+Create middleware/logger.go that prints the HTTP method, path, status code, and response
+time for every request. Apply it globally with r.Use(middleware.Logger) in main.go.
+
+Task 3 — Validate Status on Update
+
+Reject UpdateTask requests where the client sends an invalid status (anything other than
+pending, in_progress, or done). Return a 422 Unprocessable Entity response with a helpful
+message.
+
+Bonus — Refresh Tokens
+
+JWT tokens expire after 24 hours. Add a POST /auth/refresh route that accepts an expired
+token (if it is less than 7 days old) and issues a new one with a fresh expiry.
+
+TaskManager — Building a REST API with Gin + Page 21 of 23

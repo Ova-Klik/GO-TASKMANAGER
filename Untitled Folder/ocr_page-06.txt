@@ -1,0 +1,52 @@
+StatusDone Status = "done"
+
+// Task is the core data structure for our API
+type Task struct {
+ID uint _“json:"id"
+
+Title string ‘json:"title"”
+Description string ‘json:"description"”
+Status Status ‘json:"status"’
+CreatedAt time.Time json:"created_at"”
+
+// CreateTaskinput holds the fields a client sends when creating a task
+type CreateTaskinput struct {
+
+Title string ‘json:"title" —_ binding:"required"*
+Description string ‘json:"description"”
+
+TIP
+
+The binding:"required" tag tells Gin to automatically return a 400 error if the client forgets to
+send that field. You get validation for free.
+
+1.5 In-Memory Store & Handlers
+Create handlers/task_handler.go. This file uses a simple slice to store tasks (no database yet):
+
+handlers/task_handler.go
+package handlers
+
+import (
+"net/http"
+“strconv"
+"sync"
+"time"
+
+“github.com/gin-gonic/gin"
+“TaskManager/models"
+
+//\n-memory store (replaced by a real DB in Milestone 2)
+var (
+
+tasks []models.Task
+
+nextID uint = 1
+
+mu__sync.Mutex // protects tasks from concurrent access
+
+// GetTasks returns all tasks as JSON
+func GetTasks(c *gin.Context) {
+mu.Lock()
+defer mu.Unlock()
+c.JSON(http.StatusOK, gin.H{"data": tasks})
+
